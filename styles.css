@@ -1,0 +1,195 @@
+/* =========================
+   ESTILO BATATA GOURMET
+========================= */
+
+body {
+    padding-bottom: 80px;
+    background: #fffbf5;
+    font-family: 'Arial', sans-serif;
+}
+
+/* =========================
+   ANIMAÇÃO MODAL
+========================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* =========================
+   SCROLLBAR CARRINHO
+========================= */
+
+#itens-carrinho::-webkit-scrollbar {
+    width: 6px;
+}
+
+#itens-carrinho::-webkit-scrollbar-thumb {
+    background-color: #d6a84f;
+    border-radius: 3px;
+}
+
+/* =========================
+   CARDS DOS PRODUTOS
+========================= */
+
+.produto-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.produto-card:hover {
+    transform: translateY(-5px);
+    border-color: #fbbf24;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.produto-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.produto-info {
+    padding: 18px;
+}
+
+.produto-titulo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #78350f;
+    margin-bottom: 8px;
+}
+
+.produto-descricao {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+    line-height: 1.4;
+}
+
+.produto-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.produto-preco {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d97706;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.btn-adicionar {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-adicionar:hover {
+    transform: scale(1.05);
+    opacity: 0.95;
+}
+
+/* =========================
+   HEADER / BANNER
+========================= */
+
+header {
+    box-shadow: inset 0 -100px 120px rgba(0,0,0,0.4);
+}
+
+header h1 {
+    text-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+
+header p {
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   FOOTER FIXO
+========================= */
+
+footer {
+    backdrop-filter: blur(10px);
+    border-top: 2px solid rgba(255,255,255,0.1);
+}
+
+/* =========================
+   INPUT ENDEREÇO
+========================= */
+
+#input-endereco {
+    transition: 0.2s ease;
+}
+
+#input-endereco:focus {
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
+}
+
+/* =========================
+   BOTÃO WHATSAPP
+========================= */
+
+#btn-finalizar-pedido {
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+}
+
+#btn-finalizar-pedido:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 768px) {
+
+    header {
+        height: 320px;
+    }
+
+    header h1 {
+        font-size: 2.3rem;
+    }
+
+    .produto-card img {
+        height: 200px;
+    }
+
+    footer {
+        padding: 14px;
+    }
+
+    footer .font-bold.text-xl {
+        font-size: 1rem;
+    }
+}
