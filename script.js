@@ -32,7 +32,7 @@ const produtos = [
         id: 4,
         nome: "Batata Costela Barbecue",
         descricao: "Costela desfiada ao molho barbecue com cheddar e cebola crispy.",
-        preco: 39.90,
+        preco: 45.90,
         imagem: "./assets/img/batata-costela-barbecue.png"
     },
 
@@ -56,7 +56,7 @@ const produtos = [
         id: 7,
         nome: "Batata Camarão Especial",
         descricao: "Camarões salteados no alho com requeijão cremoso e queijo gratinado.",
-        preco: 44.90,
+        preco: 60.90,
         imagem: "./assets/img/batata-camarao-especial.png"
     },
 
@@ -64,7 +64,7 @@ const produtos = [
         id: 8,
         nome: "Batata Filé Mignon",
         descricao: "Cubos de filé mignon ao molho especial com queijo premium gratinado.",
-        preco: 42.90,
+        preco: 86.90,
         imagem: "./assets/img/batata-file-mignon.png"
     }
 
