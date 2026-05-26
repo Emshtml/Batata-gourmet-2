@@ -1,408 +1,184 @@
-// ========================================
-// CARDÁPIO BATATA RECHEADA GOURMET
-// ========================================
-
 const produtos = [
-
     {
-        id: 1,
-        nome: "Batata Cheddar Bacon",
-        descricao: "Batata recheada com cheddar cremoso, bacon crocante e cebolinha fresca.",
-        preco: 32.90,
-        imagem: "./assets/img/batata-cheddar-bacon.png"
+        nome: "Batata Bacon Supreme",
+        descricao: "Cheddar, bacon crocante e catupiry.",
+        preco: 29.90,
+        imagem: "https://images.unsplash.com/photo-1576107232684-1279f390859f?q=80&w=1200&auto=format&fit=crop"
     },
 
     {
-        id: 2,
-        nome: "Batata Frango Catupiry",
-        descricao: "Frango desfiado temperado com Catupiry original e queijo gratinado.",
-        preco: 34.90,
-        imagem: "./assets/img/batata-frango-catupiry.png"
+        nome: "Batata Frango Cremoso",
+        descricao: "Frango desfiado, milho e queijo.",
+        preco: 27.90,
+        imagem: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?q=80&w=1200&auto=format&fit=crop"
     },
 
     {
-        id: 3,
-        nome: "Batata Calabresa Suprema",
-        descricao: "Calabresa acebolada, mussarela derretida e molho especial da casa.",
-        preco: 33.90,
-        imagem: "./assets/img/batata-calabresa-suprema.png"
-    },
-
-    {
-        id: 4,
-        nome: "Batata Costela Barbecue",
-        descricao: "Costela desfiada ao molho barbecue com cheddar e cebola crispy.",
-        preco: 45.90,
-        imagem: "./assets/img/batata-costela-barbecue.png"
-    },
-
-    {
-        id: 5,
-        nome: "Batata Strogonoff Gourmet",
-        descricao: "Strogonoff cremoso de carne com batata palha e parmesão ralado.",
-        preco: 37.90,
-        imagem: "./assets/img/batata-strogonoff-gourmet.png"
-    },
-
-    {
-        id: 6,
-        nome: "Batata Vegetariana Premium",
-        descricao: "Brócolis, milho, champignon, queijo e molho branco artesanal.",
+        nome: "Batata Calabresa",
+        descricao: "Calabresa acebolada e cheddar.",
         preco: 31.90,
-        imagem: "./assets/img/batata-vegetariana-premium.png"
+        imagem: "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop"
     },
 
     {
-        id: 7,
-        nome: "Batata Camarão Especial",
-        descricao: "Camarões salteados no alho com requeijão cremoso e queijo gratinado.",
-        preco: 60.90,
-        imagem: "./assets/img/batata-camarao-especial.png"
-    },
-
-    {
-        id: 8,
-        nome: "Batata Filé Mignon",
-        descricao: "Cubos de filé mignon ao molho especial com queijo premium gratinado.",
-        preco: 86.90,
-        imagem: "./assets/img/batata-file-mignon.png"
+        nome: "Batata Vegetariana",
+        descricao: "Mix de legumes e queijo especial.",
+        preco: 26.90,
+        imagem: "https://images.unsplash.com/photo-1543332164-6e82f355badc?q=80&w=1200&auto=format&fit=crop"
     }
-
 ];
 
 let carrinho = [];
 
-// ========================================
-// ELEMENTOS DOM
-// ========================================
+const cards = document.getElementById("cards");
+const cartItems = document.getElementById("cart-items");
+const totalElement = document.getElementById("total");
+const busca = document.getElementById("search");
 
-const cardapioContainer = document.getElementById("cardapio");
-const modalCarrinho = document.getElementById("modal-carrinho");
-const btnVerCarrinho = document.getElementById("btn-ver-carrinho");
-const btnFecharModal = document.getElementById("btn-fechar-modal");
-const itensCarrinhoContainer = document.getElementById("itens-carrinho");
-const totalBarra = document.getElementById("total-barra");
-const totalModal = document.getElementById("total-modal");
-const contadorCarrinho = document.getElementById("contador-carrinho");
-const inputEndereco = document.getElementById("input-endereco");
-const avisoEndereco = document.getElementById("aviso-endereco");
-const btnFinalizarPedido = document.getElementById("btn-finalizar-pedido");
+function renderProdutos(lista){
 
-// ========================================
-// RENDERIZAR CARDÁPIO
-// ========================================
+    cards.innerHTML = "";
 
-function renderizarCardapio() {
+    lista.forEach((produto,index)=>{
 
-    cardapioContainer.innerHTML = "";
+        cards.innerHTML += `
+            <div class="card">
 
-    produtos.forEach(produto => {
+                <img src="${produto.imagem}" alt="${produto.nome}">
 
-        const card = document.createElement("div");
+                <div class="card-content">
 
-        card.className =
-            "bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col";
+                    <h3>${produto.nome}</h3>
 
-        card.innerHTML = `
-            <img
-                src="${produto.imagem}"
-                alt="${produto.nome}"
-                class="w-full h-56 object-cover"
-            >
+                    <p>${produto.descricao}</p>
 
-            <div class="p-5 flex flex-col flex-1">
+                    <div class="price">
+                        R$ ${produto.preco.toFixed(2)}
+                    </div>
 
-                <div class="flex-1">
+                    <button class="btn"
+                        onclick="addCarrinho(${index})">
 
-                    <h3 class="font-bold text-xl text-gray-900 mb-2">
-                        ${produto.nome}
-                    </h3>
+                        Pedir Agora
 
-                    <p class="text-gray-500 text-sm leading-relaxed mb-5">
-                        ${produto.descricao}
-                    </p>
-
-                </div>
-
-                <div class="flex items-center justify-between">
-
-                    <span class="font-bold text-2xl text-orange-600">
-                        R$ ${produto.preco.toFixed(2).replace(".", ",")}
-                    </span>
-
-                    <button
-                        class="btn-add bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow transition-all"
-                        data-id="${produto.id}"
-                    >
-                        <i class="fa-solid fa-plus mr-1"></i>
-                        Adicionar
                     </button>
 
                 </div>
 
             </div>
         `;
-
-        cardapioContainer.appendChild(card);
     });
 }
 
-// ========================================
-// ADICIONAR AO CARRINHO
-// ========================================
+renderProdutos(produtos);
 
-cardapioContainer.addEventListener("click", (e) => {
+function addCarrinho(index){
 
-    const botao = e.target.closest(".btn-add");
+    carrinho.push(produtos[index]);
 
-    if (!botao) return;
+    atualizarCarrinho();
 
-    const id = parseInt(botao.dataset.id);
-
-    adicionarAoCarrinho(id);
-});
-
-function adicionarAoCarrinho(id) {
-
-    const produto = produtos.find(p => p.id === id);
-
-    const itemExistente = carrinho.find(item => item.id === id);
-
-    if (itemExistente) {
-
-        itemExistente.quantidade++;
-
-    } else {
-
-        carrinho.push({
-            ...produto,
-            quantidade: 1
-        });
-    }
-
-    atualizarInterface();
 }
 
-// ========================================
-// ATUALIZAR INTERFACE
-// ========================================
+function atualizarCarrinho(){
 
-function atualizarInterface() {
+    cartItems.innerHTML = "";
 
     let total = 0;
-    let totalItens = 0;
 
-    carrinho.forEach(item => {
+    carrinho.forEach((item,index)=>{
 
-        total += item.preco * item.quantidade;
+        total += item.preco;
 
-        totalItens += item.quantidade;
-    });
-
-    const totalFormatado =
-        `R$ ${total.toFixed(2).replace(".", ",")}`;
-
-    totalBarra.textContent = totalFormatado;
-    totalModal.textContent = totalFormatado;
-    contadorCarrinho.textContent = totalItens;
-}
-
-// ========================================
-// MODAL
-// ========================================
-
-btnVerCarrinho.addEventListener("click", () => {
-
-    renderizarCarrinhoModal();
-
-    modalCarrinho.classList.remove("hidden");
-});
-
-btnFecharModal.addEventListener("click", () => {
-
-    modalCarrinho.classList.add("hidden");
-});
-
-modalCarrinho.addEventListener("click", (e) => {
-
-    if (e.target === modalCarrinho) {
-
-        modalCarrinho.classList.add("hidden");
-    }
-});
-
-// ========================================
-// RENDERIZAR CARRINHO
-// ========================================
-
-function renderizarCarrinhoModal() {
-
-    itensCarrinhoContainer.innerHTML = "";
-
-    if (carrinho.length === 0) {
-
-        itensCarrinhoContainer.innerHTML = `
-            <p class="text-center text-gray-500 py-5">
-                Seu carrinho está vazio.
-            </p>
-        `;
-
-        return;
-    }
-
-    carrinho.forEach(item => {
-
-        const div = document.createElement("div");
-
-        div.className =
-            "flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-100";
-
-        div.innerHTML = `
-            <div class="flex items-center gap-3">
-
-                <img
-                    src="${item.imagem}"
-                    class="w-16 h-16 rounded-xl object-cover"
-                >
+        cartItems.innerHTML += `
+            <div class="cart-item">
 
                 <div>
-                    <h4 class="font-bold text-sm text-gray-900">
-                        ${item.nome}
-                    </h4>
-
-                    <span class="text-xs text-gray-500">
-                        R$ ${item.preco.toFixed(2).replace(".", ",")}
-                    </span>
+                    <strong>${item.nome}</strong>
+                    <p>R$ ${item.preco.toFixed(2)}</p>
                 </div>
 
-            </div>
-
-            <div class="flex items-center gap-3">
-
-                <button
-                    class="btn-diminuir text-red-500 font-bold text-lg"
-                    data-id="${item.id}"
-                >
-                    -
-                </button>
-
-                <span class="font-bold text-sm">
-                    ${item.quantidade}
-                </span>
-
-                <button
-                    class="btn-aumentar text-green-500 font-bold text-lg"
-                    data-id="${item.id}"
-                >
-                    +
+                <button onclick="removerItem(${index})">
+                    X
                 </button>
 
             </div>
         `;
-
-        itensCarrinhoContainer.appendChild(div);
     });
+
+    totalElement.innerText = total.toFixed(2);
+
 }
 
-// ========================================
-// ALTERAR QUANTIDADE
-// ========================================
+function removerItem(index){
 
-itensCarrinhoContainer.addEventListener("click", (e) => {
+    carrinho.splice(index,1);
 
-    if (e.target.classList.contains("btn-aumentar")) {
+    atualizarCarrinho();
 
-        const id = parseInt(e.target.dataset.id);
+}
 
-        const item = carrinho.find(i => i.id === id);
+function finalizarPedido(){
 
-        item.quantidade++;
-
-        atualizarInterface();
-
-        renderizarCarrinhoModal();
-    }
-
-    if (e.target.classList.contains("btn-diminuir")) {
-
-        const id = parseInt(e.target.dataset.id);
-
-        const item = carrinho.find(i => i.id === id);
-
-        if (item.quantidade > 1) {
-
-            item.quantidade--;
-
-        } else {
-
-            carrinho = carrinho.filter(i => i.id !== id);
-        }
-
-        atualizarInterface();
-
-        renderizarCarrinhoModal();
-    }
-});
-
-// ========================================
-// FINALIZAR PEDIDO WHATSAPP
-// ========================================
-
-btnFinalizarPedido.addEventListener("click", () => {
-
-    if (carrinho.length === 0) {
+    if(carrinho.length === 0){
 
         alert("Seu carrinho está vazio!");
 
         return;
+
     }
 
-    if (inputEndereco.value.trim() === "") {
+    let mensagem =
+        "🍟 *Pedido Batata Gourmet* %0A%0A";
 
-        avisoEndereco.classList.remove("hidden");
+    let total = 0;
 
-        inputEndereco.classList.add("border-red-500");
+    carrinho.forEach(item=>{
 
-        return;
-    }
+        mensagem +=
+            `• ${item.nome} - R$ ${item.preco.toFixed(2)}%0A`;
 
-    avisoEndereco.classList.add("hidden");
+        total += item.preco;
 
-    inputEndereco.classList.remove("border-red-500");
-
-    let mensagem = "🍟 *NOVO PEDIDO - BATATA GOURMET* 🍟\n\n";
-
-    carrinho.forEach(item => {
-
-        mensagem += `• ${item.quantidade}x ${item.nome}\n`;
     });
 
-    const total = carrinho.reduce((acc, item) => {
-        return acc + item.preco * item.quantidade;
-    }, 0);
+    mensagem += `%0A💰 Total: R$ ${total.toFixed(2)}`;
 
-    mensagem += `\n💰 *Total:* R$ ${total.toFixed(2)}`;
+    const telefone = "5511999999999";
 
-    mensagem += `\n📍 *Endereço:* ${inputEndereco.value}`;
+    window.open(
+        `https://wa.me/${telefone}?text=${mensagem}`,
+        "_blank"
+    );
+}
 
-    const telefone = "5511976794749";
+function copiarPix(){
 
-    const url =
-        `https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(mensagem)}`;
+    const chave =
+        document.getElementById("pixKey").innerText;
 
-    carrinho = [];
+    navigator.clipboard.writeText(chave);
 
-    atualizarInterface();
+    alert("Chave PIX copiada!");
 
-    inputEndereco.value = "";
+}
 
-    modalCarrinho.classList.add("hidden");
+/* BUSCA */
 
-    window.open(url, "_blank");
+busca.addEventListener("input",()=>{
+
+    const valor =
+        busca.value.toLowerCase();
+
+    const filtrados =
+        produtos.filter(produto=>
+
+            produto.nome
+                .toLowerCase()
+                .includes(valor)
+
+        );
+
+    renderProdutos(filtrados);
+
 });
-
-// ========================================
-// INICIALIZAÇÃO
-// ========================================
-
-renderizarCardapio();
