@@ -13,6 +13,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
     <style>
+
         *{
             margin:0;
             padding:0;
@@ -65,15 +66,9 @@
             margin-bottom:10px;
         }
 
-        .banner-text p{
-            font-size:18px;
-            opacity:0.95;
-        }
-
         .banner img{
             width:280px;
             border-radius:20px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.2);
         }
 
         .menu{
@@ -150,6 +145,55 @@
             background:#c2410c;
         }
 
+        /* CARRINHO */
+
+        .cart{
+            width:90%;
+            max-width:700px;
+            margin:50px auto;
+            background:white;
+            border-radius:25px;
+            padding:30px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .cart h2{
+            margin-bottom:20px;
+            color:#ea580c;
+        }
+
+        .cart-item{
+            display:flex;
+            justify-content:space-between;
+            margin-bottom:15px;
+            padding-bottom:10px;
+            border-bottom:1px solid #eee;
+        }
+
+        .total{
+            margin-top:20px;
+            font-size:24px;
+            font-weight:bold;
+            color:#16a34a;
+        }
+
+        .finish-btn{
+            margin-top:20px;
+            width:100%;
+            border:none;
+            padding:16px;
+            border-radius:14px;
+            background:#16a34a;
+            color:white;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        .finish-btn:hover{
+            background:#15803d;
+        }
+
         /* PIX */
 
         .pix-container{
@@ -166,13 +210,11 @@
         .pix-container h2{
             font-size:28px;
             margin-bottom:20px;
-            color:#222;
         }
 
         .pix-qrcode{
             width:240px;
             height:240px;
-            object-fit:cover;
             border-radius:18px;
             margin-bottom:20px;
         }
@@ -183,7 +225,6 @@
             border-radius:12px;
             margin-bottom:20px;
             word-break:break-all;
-            color:#444;
         }
 
         .pix-btn{
@@ -196,11 +237,6 @@
             font-size:17px;
             font-weight:bold;
             cursor:pointer;
-            transition:0.3s;
-        }
-
-        .pix-btn:hover{
-            background:#15803d;
         }
 
         footer{
@@ -211,21 +247,6 @@
             padding:30px 20px;
         }
 
-        @media(max-width:768px){
-
-            .banner{
-                text-align:center;
-                justify-content:center;
-            }
-
-            .banner-text h2{
-                font-size:28px;
-            }
-
-            header h1{
-                font-size:30px;
-            }
-        }
     </style>
 </head>
 
@@ -234,6 +255,7 @@
     <!-- HEADER -->
 
     <header>
+
         <h1>
             🍟 Batata Gourmet Delivery
         </h1>
@@ -241,6 +263,7 @@
         <p>
             As melhores batatas recheadas da cidade
         </p>
+
     </header>
 
     <!-- BANNER -->
@@ -248,13 +271,15 @@
     <section class="banner">
 
         <div class="banner-text">
+
             <h2>
                 Promoção Especial
             </h2>
 
             <p>
-                Peça agora e ganhe refrigerante grátis em pedidos acima de R$ 50
+                Ganhe refrigerante grátis acima de R$50
             </p>
+
         </div>
 
         <img
@@ -274,13 +299,13 @@
 
         <div class="cards">
 
-            <!-- ITEM 1 -->
+            <!-- ITEM -->
 
             <div class="card">
 
                 <img
                     src="https://images.unsplash.com/photo-1576107232684-1279f390859f?q=80&w=1200&auto=format&fit=crop"
-                    alt="Batata Bacon"
+                    alt=""
                 >
 
                 <div class="card-content">
@@ -290,14 +315,17 @@
                     </h3>
 
                     <p>
-                        Batata recheada com cheddar, bacon crocante e catupiry.
+                        Cheddar, bacon e catupiry.
                     </p>
 
                     <div class="price">
                         R$ 29,90
                     </div>
 
-                    <button class="btn">
+                    <button
+                        class="btn"
+                        onclick="addToCart('Batata Bacon Supreme',29.90)"
+                    >
                         Pedir Agora
                     </button>
 
@@ -305,13 +333,13 @@
 
             </div>
 
-            <!-- ITEM 2 -->
+            <!-- ITEM -->
 
             <div class="card">
 
                 <img
                     src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?q=80&w=1200&auto=format&fit=crop"
-                    alt="Frango"
+                    alt=""
                 >
 
                 <div class="card-content">
@@ -321,14 +349,17 @@
                     </h3>
 
                     <p>
-                        Frango desfiado, milho, queijo e molho especial.
+                        Frango, queijo e milho.
                     </p>
 
                     <div class="price">
                         R$ 27,90
                     </div>
 
-                    <button class="btn">
+                    <button
+                        class="btn"
+                        onclick="addToCart('Batata Frango Cremoso',27.90)"
+                    >
                         Pedir Agora
                     </button>
 
@@ -336,13 +367,13 @@
 
             </div>
 
-            <!-- ITEM 3 -->
+            <!-- ITEM -->
 
             <div class="card">
 
                 <img
                     src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop"
-                    alt="Calabresa"
+                    alt=""
                 >
 
                 <div class="card-content">
@@ -352,45 +383,17 @@
                     </h3>
 
                     <p>
-                        Calabresa acebolada, queijo mussarela e molho cheddar.
+                        Calabresa acebolada e cheddar.
                     </p>
 
                     <div class="price">
                         R$ 31,90
                     </div>
 
-                    <button class="btn">
-                        Pedir Agora
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- ITEM 4 -->
-
-            <div class="card">
-
-                <img
-                    src="https://images.unsplash.com/photo-1543332164-6e82f355badc?q=80&w=1200&auto=format&fit=crop"
-                    alt="Vegetariana"
-                >
-
-                <div class="card-content">
-
-                    <h3>
-                        Batata Vegetariana
-                    </h3>
-
-                    <p>
-                        Mix de legumes, queijo cremoso e ervas especiais.
-                    </p>
-
-                    <div class="price">
-                        R$ 26,90
-                    </div>
-
-                    <button class="btn">
+                    <button
+                        class="btn"
+                        onclick="addToCart('Batata Calabresa',31.90)"
+                    >
                         Pedir Agora
                     </button>
 
@@ -399,6 +402,26 @@
             </div>
 
         </div>
+
+    </section>
+
+    <!-- CARRINHO -->
+
+    <section class="cart">
+
+        <h2>
+            🛒 Seu Pedido
+        </h2>
+
+        <div id="cart-items"></div>
+
+        <div class="total">
+            Total: R$ <span id="total">0.00</span>
+        </div>
+
+        <button class="finish-btn" onclick="finalizarPedido()">
+            Finalizar Pedido
+        </button>
 
     </section>
 
@@ -411,7 +434,6 @@
             Pagamento via PIX
         </h2>
 
-        <!-- TROQUE PELA SUA IMAGEM -->
         <img
             src="qrcode-pix.png"
             alt="QR Code PIX"
@@ -437,7 +459,7 @@
         </h3>
 
         <p style="margin-top:10px;">
-            Delivery rápido • Qualidade premium • Atendimento todos os dias
+            Delivery rápido • Qualidade premium
         </p>
 
     </footer>
@@ -446,6 +468,76 @@
 
     <script>
 
+        let cart = [];
+        let total = 0;
+
+        function addToCart(nome, preco){
+
+            cart.push({
+                nome,
+                preco
+            });
+
+            total += preco;
+
+            atualizarCarrinho();
+
+        }
+
+        function atualizarCarrinho(){
+
+            const cartItems =
+                document.getElementById("cart-items");
+
+            cartItems.innerHTML = "";
+
+            cart.forEach(item => {
+
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.nome}</span>
+                        <span>R$ ${item.preco.toFixed(2)}</span>
+                    </div>
+                `;
+
+            });
+
+            document.getElementById("total")
+                .innerText = total.toFixed(2);
+
+        }
+
+        function finalizarPedido(){
+
+            if(cart.length === 0){
+
+                alert("Adicione itens ao carrinho!");
+
+                return;
+
+            }
+
+            let mensagem =
+                "🍟 *Novo Pedido - Batata Gourmet*%0A%0A";
+
+            cart.forEach(item => {
+
+                mensagem +=
+                    `• ${item.nome} - R$ ${item.preco.toFixed(2)}%0A`;
+
+            });
+
+            mensagem += `%0A💰 Total: R$ ${total.toFixed(2)}`;
+
+            const telefone = "5511999999999";
+
+            window.open(
+                `https://wa.me/${telefone}?text=${mensagem}`,
+                "_blank"
+            );
+
+        }
+
         function copiarPix(){
 
             const chavePix =
@@ -453,7 +545,7 @@
 
             navigator.clipboard.writeText(chavePix);
 
-            alert("Chave PIX copiada com sucesso!");
+            alert("Chave PIX copiada!");
 
         }
 
@@ -461,7 +553,3 @@
 
 </body>
 </html>
-
-
-
-
