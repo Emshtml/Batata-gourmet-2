@@ -1,555 +1,167 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Batata Gourmet Delivery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <!-- FontAwesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, Helvetica, sans-serif;
-        }
-
-        body{
-            background:#fff7ed;
-            color:#222;
-        }
-
-        header{
-            background:linear-gradient(135deg,#ea580c,#f97316);
-            color:white;
-            padding:30px 20px;
-            text-align:center;
-            border-bottom-left-radius:30px;
-            border-bottom-right-radius:30px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        header h1{
-            font-size:38px;
-            font-weight:bold;
-        }
-
-        header p{
-            margin-top:10px;
-            opacity:0.9;
-        }
-
-        .banner{
-            width:90%;
-            max-width:1200px;
-            margin:30px auto;
-            background:linear-gradient(135deg,#fb923c,#f97316);
-            border-radius:25px;
-            padding:30px;
-            color:white;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:20px;
-            flex-wrap:wrap;
-        }
-
-        .banner-text h2{
-            font-size:36px;
-            margin-bottom:10px;
-        }
-
-        .banner img{
-            width:280px;
-            border-radius:20px;
-        }
-
-        .menu{
-            width:90%;
-            max-width:1200px;
-            margin:40px auto;
-        }
-
-        .menu h2{
-            font-size:32px;
-            margin-bottom:25px;
-            color:#ea580c;
-        }
-
-        .cards{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:25px;
-        }
-
-        .card{
-            background:white;
-            border-radius:20px;
-            overflow:hidden;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
-            transition:0.3s;
-        }
-
-        .card:hover{
-            transform:translateY(-5px);
-        }
-
-        .card img{
-            width:100%;
-            height:220px;
-            object-fit:cover;
-        }
-
-        .card-content{
-            padding:20px;
-        }
-
-        .card-content h3{
-            font-size:24px;
-            margin-bottom:10px;
-        }
-
-        .card-content p{
-            color:#666;
-            margin-bottom:15px;
-        }
-
-        .price{
-            font-size:22px;
-            font-weight:bold;
-            color:#16a34a;
-            margin-bottom:15px;
-        }
-
-        .btn{
-            width:100%;
-            border:none;
-            padding:14px;
-            border-radius:14px;
-            background:#ea580c;
-            color:white;
-            font-size:16px;
-            font-weight:bold;
-            cursor:pointer;
-            transition:0.3s;
-        }
-
-        .btn:hover{
-            background:#c2410c;
-        }
-
-        /* CARRINHO */
-
-        .cart{
-            width:90%;
-            max-width:700px;
-            margin:50px auto;
-            background:white;
-            border-radius:25px;
-            padding:30px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .cart h2{
-            margin-bottom:20px;
-            color:#ea580c;
-        }
-
-        .cart-item{
-            display:flex;
-            justify-content:space-between;
-            margin-bottom:15px;
-            padding-bottom:10px;
-            border-bottom:1px solid #eee;
-        }
-
-        .total{
-            margin-top:20px;
-            font-size:24px;
-            font-weight:bold;
-            color:#16a34a;
-        }
-
-        .finish-btn{
-            margin-top:20px;
-            width:100%;
-            border:none;
-            padding:16px;
-            border-radius:14px;
-            background:#16a34a;
-            color:white;
-            font-size:18px;
-            font-weight:bold;
-            cursor:pointer;
-        }
-
-        .finish-btn:hover{
-            background:#15803d;
-        }
-
-        /* PIX */
-
-        .pix-container{
-            width:90%;
-            max-width:420px;
-            margin:50px auto;
-            background:white;
-            border-radius:25px;
-            padding:30px;
-            text-align:center;
-            box-shadow:0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .pix-container h2{
-            font-size:28px;
-            margin-bottom:20px;
-        }
-
-        .pix-qrcode{
-            width:240px;
-            height:240px;
-            border-radius:18px;
-            margin-bottom:20px;
-        }
-
-        .pix-chave{
-            background:#f3f4f6;
-            padding:14px;
-            border-radius:12px;
-            margin-bottom:20px;
-            word-break:break-all;
-        }
-
-        .pix-btn{
-            width:100%;
-            border:none;
-            padding:15px;
-            border-radius:14px;
-            background:#16a34a;
-            color:white;
-            font-size:17px;
-            font-weight:bold;
-            cursor:pointer;
-        }
-
-        footer{
-            margin-top:50px;
-            background:#1f2937;
-            color:white;
-            text-align:center;
-            padding:30px 20px;
-        }
-
-    </style>
+    <title>Batata Gourmet - Delivery</title>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-
-    <header>
-
-        <h1>
-            🍟 Batata Gourmet Delivery
-        </h1>
-
-        <p>
-            As melhores batatas recheadas da cidade
-        </p>
-
-    </header>
-
-    <!-- BANNER -->
-
-    <section class="banner">
-
-        <div class="banner-text">
-
-            <h2>
-                Promoção Especial
-            </h2>
-
-            <p>
-                Ganhe refrigerante grátis acima de R$50
-            </p>
-
-        </div>
-
-        <img
-            src="https://images.unsplash.com/photo-1518013431117-eb1465fa5752?q=80&w=1200&auto=format&fit=crop"
-            alt="Batata Gourmet"
-        >
-
-    </section>
-
-    <!-- CARDÁPIO -->
-
-    <section class="menu">
-
-        <h2>
-            Cardápio
-        </h2>
-
-        <div class="cards">
-
-            <!-- ITEM -->
-
-            <div class="card">
-
-                <img
-                    src="https://images.unsplash.com/photo-1576107232684-1279f390859f?q=80&w=1200&auto=format&fit=crop"
-                    alt=""
-                >
-
-                <div class="card-content">
-
-                    <h3>
-                        Batata Bacon Supreme
-                    </h3>
-
-                    <p>
-                        Cheddar, bacon e catupiry.
-                    </p>
-
-                    <div class="price">
-                        R$ 29,90
-                    </div>
-
-                    <button
-                        class="btn"
-                        onclick="addToCart('Batata Bacon Supreme',29.90)"
-                    >
-                        Pedir Agora
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- ITEM -->
-
-            <div class="card">
-
-                <img
-                    src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?q=80&w=1200&auto=format&fit=crop"
-                    alt=""
-                >
-
-                <div class="card-content">
-
-                    <h3>
-                        Batata Frango Cremoso
-                    </h3>
-
-                    <p>
-                        Frango, queijo e milho.
-                    </p>
-
-                    <div class="price">
-                        R$ 27,90
-                    </div>
-
-                    <button
-                        class="btn"
-                        onclick="addToCart('Batata Frango Cremoso',27.90)"
-                    >
-                        Pedir Agora
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- ITEM -->
-
-            <div class="card">
-
-                <img
-                    src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop"
-                    alt=""
-                >
-
-                <div class="card-content">
-
-                    <h3>
-                        Batata Calabresa
-                    </h3>
-
-                    <p>
-                        Calabresa acebolada e cheddar.
-                    </p>
-
-                    <div class="price">
-                        R$ 31,90
-                    </div>
-
-                    <button
-                        class="btn"
-                        onclick="addToCart('Batata Calabresa',31.90)"
-                    >
-                        Pedir Agora
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- CARRINHO -->
-
-    <section class="cart">
-
-        <h2>
-            🛒 Seu Pedido
-        </h2>
-
-        <div id="cart-items"></div>
-
-        <div class="total">
-            Total: R$ <span id="total">0.00</span>
-        </div>
-
-        <button class="finish-btn" onclick="finalizarPedido()">
-            Finalizar Pedido
-        </button>
-
-    </section>
-
-    <!-- PIX -->
-
-    <section class="pix-container">
-
-        <h2>
-            <i class="fa-brands fa-pix"></i>
-            Pagamento via PIX
-        </h2>
-
-        <img
-            src="qrcode-pix.png"
-            alt="QR Code PIX"
-            class="pix-qrcode"
-        >
-
-        <div class="pix-chave" id="pixKey">
-            581e7489-78a4-4c1a-a5a6-cc241cb1dbf5
-        </div>
-
-        <button onclick="copiarPix()" class="pix-btn">
-            Copiar Chave PIX
-        </button>
-
-    </section>
-
-    <!-- FOOTER -->
+    <!-- Conteúdo do site -->
 
     <footer>
-
-        <h3>
-            🍟 Batata Gourmet Delivery
-        </h3>
-
-        <p style="margin-top:10px;">
-            Delivery rápido • Qualidade premium
-        </p>
-
     </footer>
 
-    <!-- SCRIPT -->
+</body>
+</html>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        let cart = [];
-        let total = 0;
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        function addToCart(nome, preco){
+<body class="bg-amber-50 text-gray-800 font-sans">
 
-            cart.push({
-                nome,
-                preco
-            });
+    <!-- Header / Banner -->
+    <header 
+        class="w-full h-[400px] bg-cover bg-center relative"
+        style="background-image: url('https://images.unsplash.com/photo-1518013431117-eb1465fa5752?q=80&w=1200');"
+    >
+        <div class="absolute inset-0 bg-black/60 flex flex-col justify-center items-center text-center p-4">
+            
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">
+                Batata Gourmet
+            </h1>
 
-            total += preco;
+            <p class="text-yellow-400 font-medium text-lg mb-4">
+                As melhores batatas recheadas da cidade
+            </p>
 
-            atualizarCarrinho();
+            <div 
+                class="bg-green-500 text-white px-4 py-1.5 rounded-lg text-sm font-semibold shadow-lg"
+                id="status-loja"
+            >
+                <i class="fa-solid fa-clock mr-1"></i>
+                Aberto - Ter à Dom: 18h às 23h
+            </div>
+        </div>
+    </header>
 
-        }
+    <!-- Main -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
 
-        function atualizarCarrinho(){
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">
+            Nosso Cardápio
+        </h2>
 
-            const cartItems =
-                document.getElementById("cart-items");
+        <!-- Grid Produtos -->
+        <div 
+            id="cardapio"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+            <!-- Produtos via script.js -->
+        </div>
+    </main>
 
-            cartItems.innerHTML = "";
+    <!-- Footer / Carrinho -->
+    <footer 
+        class="fixed bottom-0 left-0 w-full bg-yellow-600 text-white p-4 flex justify-between items-center z-40 shadow-2xl md:px-12"
+    >
+        <button 
+            id="btn-ver-carrinho"
+            class="flex items-center gap-2 font-bold text-lg hover:text-yellow-200 transition-all"
+        >
+            <i class="fa-solid fa-cart-shopping"></i>
+            Ver Carrinho (<span id="contador-carrinho">0</span>)
+        </button>
 
-            cart.forEach(item => {
+        <div class="font-bold text-xl">
+            Total: <span id="total-barra">R$ 0,00</span>
+        </div>
+    </footer>
 
-                cartItems.innerHTML += `
-                    <div class="cart-item">
-                        <span>${item.nome}</span>
-                        <span>R$ ${item.preco.toFixed(2)}</span>
-                    </div>
-                `;
+    <!-- Modal Carrinho -->
+    <div 
+        id="modal-carrinho"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm"
+    >
+        <div 
+            class="bg-white rounded-2xl w-full max-w-lg p-6 max-h-[85vh] flex flex-col shadow-2xl animate-fade-in"
+        >
 
-            });
+            <!-- Header Modal -->
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
 
-            document.getElementById("total")
-                .innerText = total.toFixed(2);
+                <h3 class="text-xl font-bold text-gray-900">
+                    <i class="fa-solid fa-cart-shopping text-yellow-600 mr-2"></i>
+                    Seu Carrinho
+                </h3>
 
-        }
+                <button 
+                    id="btn-fechar-modal"
+                    class="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
 
-        function finalizarPedido(){
+            <!-- Itens -->
+            <div 
+                id="itens-carrinho"
+                class="flex-1 overflow-y-auto space-y-4 pr-1 mb-4"
+            >
+                <!-- JS -->
+            </div>
 
-            if(cart.length === 0){
+            <!-- Total -->
+            <div class="border-t pt-3 space-y-3">
 
-                alert("Adicione itens ao carrinho!");
+                <div class="flex justify-between text-lg font-bold text-gray-900">
+                    <span>Total:</span>
+                    <span id="total-modal">R$ 0,00</span>
+                </div>
 
-                return;
+                <!-- Endereço -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        Endereço de Entrega:
+                    </label>
 
-            }
+                    <input
+                        type="text"
+                        id="input-endereco"
+                        placeholder="Rua, Número, Bairro..."
+                        class="w-full border rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                    >
 
-            let mensagem =
-                "🍟 *Novo Pedido - Batata Gourmet*%0A%0A";
+                    <p 
+                        id="aviso-endereco"
+                        class="text-red-500 text-xs mt-1 hidden"
+                    >
+                        * Por favor, informe o endereço.
+                    </p>
+                </div>
 
-            cart.forEach(item => {
+                <!-- WhatsApp -->
+                <button
+                    id="btn-finalizar-pedido"
+                    class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                >
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    Finalizar Pedido via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
 
-                mensagem +=
-                    `• ${item.nome} - R$ ${item.preco.toFixed(2)}%0A`;
-
-            });
-
-            mensagem += `%0A💰 Total: R$ ${total.toFixed(2)}`;
-
-            const telefone = "5511976794749";
-
-            window.open(
-                `https://wa.me/${telefone}?text=${mensagem}`,
-                "_blank"
-            );
-
-        }
-
-        function copiarPix(){
-
-            const chavePix =
-                document.getElementById("pixKey").innerText;
-
-            navigator.clipboard.writeText(chavePix);
-
-            alert("Chave PIX copiada!");
-
-        }
-
-    </script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
 
 </body>
 </html>
