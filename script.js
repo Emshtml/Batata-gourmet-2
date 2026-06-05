@@ -15,10 +15,7 @@ const produtos = [
 
 let carrinho = [];
 
-// ========================================
-// ELEMENTOS DOM
-// ========================================
-
+// Elementos DOM
 const cardapioContainer = document.getElementById("cardapio");
 const modalCarrinho = document.getElementById("modal-carrinho");
 const btnVerCarrinho = document.getElementById("btn-ver-carrinho");
@@ -32,8 +29,10 @@ const avisoEndereco = document.getElementById("aviso-endereco");
 const btnFinalizarPedido = document.getElementById("btn-finalizar-pedido");
 
 // ========================================
-// INJEÇÃO DA OPÇÃO PIX (Dinâmica)
+// INTEGRAÇÃO PIX (Dinâmica)
 // ========================================
+const CHAVE_PIX = "1db6a81e-038a-4839-8f91-894bd167d418";
+
 const containerPagamento = document.createElement('div');
 containerPagamento.className = "border-t pt-3 mb-4";
 containerPagamento.innerHTML = `
@@ -44,8 +43,8 @@ containerPagamento.innerHTML = `
     </select>
     <div id="area-pix" class="hidden text-center p-3 bg-gray-50 rounded-xl border">
         <p class="text-xs font-bold mb-1">Escaneie o QR Code:</p>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=CHAVE_PIX_EXEMPLO" alt="QR Pix" class="mx-auto w-24 h-24">
-        <p class="text-[10px] text-gray-500 mt-1">Chave: sua-chave-pix-aqui</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${CHAVE_PIX}" alt="QR Pix" class="mx-auto w-24 h-24">
+        <p class="text-[10px] text-gray-500 mt-1 break-all">Chave Pix: ${CHAVE_PIX}</p>
     </div>
 `;
 btnFinalizarPedido.parentNode.insertBefore(containerPagamento, btnFinalizarPedido);
@@ -54,10 +53,7 @@ document.getElementById('forma-pagamento').addEventListener('change', (e) => {
     document.getElementById('area-pix').classList.toggle('hidden', e.target.value !== 'pix');
 });
 
-// ========================================
-// FUNÇÕES PRINCIPAIS
-// ========================================
-
+// Funções de renderização e lógica mantidas...
 function renderizarCardapio() {
     cardapioContainer.innerHTML = "";
     produtos.forEach(produto => {
@@ -90,18 +86,13 @@ function adicionarAoCarrinho(id) {
 }
 
 function atualizarInterface() {
-    let total = 0;
-    let totalItens = 0;
+    let total = 0, totalItens = 0;
     carrinho.forEach(item => { total += item.preco * item.quantidade; totalItens += item.quantidade; });
     const totalFormatado = `R$ ${total.toFixed(2).replace(".", ",")}`;
     totalBarra.textContent = totalFormatado;
     totalModal.textContent = totalFormatado;
     contadorCarrinho.textContent = totalItens;
 }
-
-// ========================================
-// MODAL E CARRINHO
-// ========================================
 
 btnVerCarrinho.addEventListener("click", () => {
     renderizarCarrinhoModal();
@@ -136,15 +127,6 @@ function renderizarCarrinhoModal() {
     });
 }
 
-// ========================================
-// EVENTOS E FINALIZAÇÃO
-// ========================================
-
-cardapioContainer.addEventListener("click", (e) => {
-    const botao = e.target.closest(".btn-add");
-    if (botao) adicionarAoCarrinho(parseInt(botao.dataset.id));
-});
-
 itensCarrinhoContainer.addEventListener("click", (e) => {
     const id = parseInt(e.target.dataset.id);
     if (e.target.classList.contains("btn-aumentar")) carrinho.find(i => i.id === id).quantidade++;
@@ -169,15 +151,10 @@ btnFinalizarPedido.addEventListener("click", () => {
     carrinho.forEach(item => mensagem += `• ${item.quantidade}x ${item.nome}\n`);
     const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
     mensagem += `\n💰 *Total:* R$ ${total.toFixed(2)}`;
-    mensagem += `\n💳 *Pagamento:* ${formaPagamento === 'pix' ? 'Pix' : 'Na Entrega'}`;
+    mensagem += `\n💳 *Pagamento:* ${formaPagamento === 'pix' ? 'Pix (Chave: ' + CHAVE_PIX + ')' : 'Na Entrega'}`;
     mensagem += `\n📍 *Endereço:* ${inputEndereco.value}`;
 
     const url = `https://api.whatsapp.com/send?phone=5511976794749&text=${encodeURIComponent(mensagem)}`;
-    
-    // Reset
-    carrinho = [];
-    atualizarInterface();
-    modalCarrinho.classList.add("hidden");
     window.open(url, "_blank");
 });
 
