@@ -4,23 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Batata Gourmet - Delivery</title>
-</head>
 
-<body>
-
-    <!-- Conteúdo do site -->
-
-    <footer>
-    </footer>
-
-</body>
-</html>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
@@ -28,7 +15,6 @@
 
 <body class="bg-amber-50 text-gray-800 font-sans">
 
-    <!-- Header / Banner -->
     <header 
         class="w-full h-[400px] bg-cover bg-center relative"
         style="background-image: url('https://images.unsplash.com/photo-1518013431117-eb1465fa5752?q=80&w=1200');"
@@ -53,23 +39,19 @@
         </div>
     </header>
 
-    <!-- Main -->
     <main class="max-w-7xl mx-auto px-4 py-8">
 
         <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">
             Nosso Cardápio
         </h2>
 
-        <!-- Grid Produtos -->
         <div 
             id="cardapio"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-            <!-- Produtos via script.js -->
-        </div>
+            </div>
     </main>
 
-    <!-- Footer / Carrinho -->
     <footer 
         class="fixed bottom-0 left-0 w-full bg-yellow-600 text-white p-4 flex justify-between items-center z-40 shadow-2xl md:px-12"
     >
@@ -86,7 +68,6 @@
         </div>
     </footer>
 
-    <!-- Modal Carrinho -->
     <div 
         id="modal-carrinho"
         class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm"
@@ -95,14 +76,11 @@
             class="bg-white rounded-2xl w-full max-w-lg p-6 max-h-[85vh] flex flex-col shadow-2xl animate-fade-in"
         >
 
-            <!-- Header Modal -->
             <div class="flex justify-between items-center border-b pb-3 mb-4">
-
                 <h3 class="text-xl font-bold text-gray-900">
                     <i class="fa-solid fa-cart-shopping text-yellow-600 mr-2"></i>
                     Seu Carrinho
                 </h3>
-
                 <button 
                     id="btn-fechar-modal"
                     class="text-gray-400 hover:text-gray-600 text-2xl"
@@ -111,35 +89,28 @@
                 </button>
             </div>
 
-            <!-- Itens -->
             <div 
                 id="itens-carrinho"
                 class="flex-1 overflow-y-auto space-y-4 pr-1 mb-4"
             >
-                <!-- JS -->
-            </div>
+                </div>
 
-            <!-- Total -->
             <div class="border-t pt-3 space-y-3">
-
                 <div class="flex justify-between text-lg font-bold text-gray-900">
                     <span>Total:</span>
                     <span id="total-modal">R$ 0,00</span>
                 </div>
 
-                <!-- Endereço -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">
                         Endereço de Entrega:
                     </label>
-
                     <input
                         type="text"
                         id="input-endereco"
                         placeholder="Rua, Número, Bairro..."
                         class="w-full border rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     >
-
                     <p 
                         id="aviso-endereco"
                         class="text-red-500 text-xs mt-1 hidden"
@@ -148,7 +119,6 @@
                     </p>
                 </div>
 
-                <!-- WhatsApp -->
                 <button
                     id="btn-finalizar-pedido"
                     class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
@@ -160,7 +130,6 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
 
 </body>
